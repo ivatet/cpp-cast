@@ -8,6 +8,8 @@ else
 CFLAGS=-I/usr/include
 endif
 
+CFLAGS+=-Wall -Werror -Wpedantic
+
 all:
 	${CC} ${CFLAGS} main.cpp -o cpp-cast
 
