@@ -1,7 +1,7 @@
 CC=g++
-
+CFLAGS=-I/usr/local/include
 all:
-	${CC} main.cpp -o cpp-cast
+	${CC} ${CFLAGS} main.cpp -o cpp-cast
 
 clean:
 	rm cpp-cast
