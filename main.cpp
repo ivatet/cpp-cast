@@ -45,14 +45,12 @@ BOOST_AUTO_TEST_CASE(static_cast_test_2)
 	class Foo {
 	public:
 		virtual ~Foo() {}
-		int magic() const { return foo_magic; }
-		virtual int vmagic() const { return magic(); }
+		virtual int magic() const { return foo_magic; }
 	};
 
 	class Bar : public Foo {
 	public:
-		int magic() const { return bar_magic; }
-		virtual int vmagic() const { return magic(); }
+		virtual int magic() const { return bar_magic; }
 	};
 
 	Foo foo;
@@ -60,9 +58,7 @@ BOOST_AUTO_TEST_CASE(static_cast_test_2)
 	/* The downcast below won't compile without static_cast. */
 	/* Bar &baz = foo; */
 	Bar &bar = static_cast<Bar &>(foo);
-
-	BOOST_CHECK(bar.magic() == bar_magic);
-	BOOST_CHECK(bar.vmagic() == foo_magic);
+	BOOST_CHECK(bar.magic() == foo_magic);
 
 	/* At the same time dynamic_cast is smart enough not to compile the code below. */
 	/* Bar &baz = dynamic_cast<Bar &>(foo); */
