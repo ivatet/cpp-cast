@@ -1,2 +1,11 @@
 # cpp-cast
-C++ type conversions
+
+C++ type conversions examples.
+
+Build:
+
+    $ make
+
+Run:
+
+    $ ./cpp-cast
