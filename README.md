@@ -1,6 +1,4 @@
-# cpp-cast
-
-C++ type conversions examples.
+# C++ type conversion examples #
 
 Build:
 

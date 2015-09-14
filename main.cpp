@@ -2,12 +2,10 @@
 #include <boost/test/included/unit_test.hpp>
 
 namespace static_cast_test_1 {
-
 class Foo {
 public:
 	template <typename T> explicit Foo(T &&str) : m_str(std::forward<T>(str)) {}
 	bool operator==(const std::string &str) const { return m_str == str; }
-
 private:
 	std::string m_str;
 };
@@ -24,7 +22,6 @@ BOOST_AUTO_TEST_CASE(static_cast_test_1)
 }
 
 namespace static_cast_test_2 {
-
 class Foo {
 public:
 	virtual ~Foo() {}
@@ -46,7 +43,7 @@ BOOST_AUTO_TEST_CASE(static_cast_test_2)
 	Bar &bar = static_cast<Bar &>(foo);
 	BOOST_CHECK(bar.magic == Bar::magic);
 }
-} /* static_cast_test_2 */
+}
 
 namespace static_cast_test_3 {
 class Foo {
@@ -67,5 +64,4 @@ BOOST_AUTO_TEST_CASE(static_cast_test_3)
 	BOOST_CHECK(foo != magic);
 	BOOST_CHECK(bar == magic);
 }
-
-} /* static_cast_test_3 */
+}
