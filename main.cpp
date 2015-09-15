@@ -49,8 +49,7 @@ namespace static_cast_test_3 {
 class Foo {
 public:
 	template <typename T> Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	bool operator==(const std::string &str) const { return m_str == str; }
-	bool operator!=(const std::string &str) const { return !(*this == str); }
+	const std::string &str() { return m_str; }
 private:
 	std::string m_str;
 };
@@ -62,8 +61,8 @@ BOOST_AUTO_TEST_CASE(static_cast_test_3)
 
 	/* lvalue to xvalue */
 	Foo bar = static_cast<Foo &&>(foo);
-	BOOST_CHECK(foo != magic);
-	BOOST_CHECK(bar == magic);
+	BOOST_CHECK(foo.str() != magic);
+	BOOST_CHECK(bar.str() == magic);
 }
 }
 
