@@ -58,8 +58,9 @@ private:
 BOOST_AUTO_TEST_CASE(static_cast_test_3)
 {
 	std::string magic = "42";
-
 	Foo foo(magic);
+
+	/* lvalue to xvalue */
 	Foo bar = static_cast<Foo &&>(foo);
 	BOOST_CHECK(foo != magic);
 	BOOST_CHECK(bar == magic);
