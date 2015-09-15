@@ -66,3 +66,13 @@ BOOST_AUTO_TEST_CASE(static_cast_test_3)
 	BOOST_CHECK(bar == magic);
 }
 }
+
+BOOST_AUTO_TEST_CASE(static_cast_test_4)
+{
+	const int magic = 42;
+
+	/* discard the value of the expression */
+	BOOST_CHECK(typeid(static_cast<void>(magic)) == typeid(void));
+	BOOST_CHECK(typeid(static_cast<void>(magic)) != typeid(int));
+	BOOST_CHECK(typeid(magic) == typeid(int));
+}
