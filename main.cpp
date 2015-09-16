@@ -5,7 +5,7 @@ namespace static_cast_test_1 {
 class Foo {
 public:
 	template <typename T> explicit Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	bool operator==(const std::string &str) const { return m_str == str; }
+	const std::string &str() { return m_str; }
 private:
 	std::string m_str;
 };
@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_CASE(static_cast_test_1)
 	/* call explicit ctor implicitly */
 	//Foo foo = magic;
 	Foo foo = static_cast<Foo>(magic);
-	BOOST_CHECK(foo == magic);
+	BOOST_CHECK(foo.str() == magic);
 }
 }
 
