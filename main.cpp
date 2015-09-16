@@ -5,7 +5,7 @@ namespace static_cast_test_1 {
 class Foo {
 public:
 	template <typename T> explicit Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	const std::string &str() { return m_str; }
+	const std::string &str() const { return m_str; }
 private:
 	std::string m_str;
 };
@@ -49,7 +49,7 @@ namespace static_cast_test_3 {
 class Foo {
 public:
 	template <typename T> Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	const std::string &str() { return m_str; }
+	const std::string &str() const { return m_str; }
 private:
 	std::string m_str;
 };
