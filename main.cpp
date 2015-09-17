@@ -83,5 +83,6 @@ BOOST_AUTO_TEST_CASE(static_cast_test_5)
 	const void * const baz = bar;
 	const int * const qux = static_cast<const int * const>(baz);
 
+	/* undo: inverse of the implicit conversion */
 	BOOST_CHECK(*qux == foo);
 }
