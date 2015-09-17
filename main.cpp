@@ -75,3 +75,13 @@ BOOST_AUTO_TEST_CASE(static_cast_test_4)
 	BOOST_CHECK(typeid(static_cast<void>(magic)) != typeid(int));
 	BOOST_CHECK(typeid(magic) == typeid(int));
 }
+
+BOOST_AUTO_TEST_CASE(static_cast_test_5)
+{
+	const int foo = 42;
+	const int * const bar = &foo;
+	const void * const baz = bar;
+	const int * const qux = static_cast<const int * const>(baz);
+
+	BOOST_CHECK(*qux == foo);
+}
