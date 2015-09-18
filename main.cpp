@@ -71,6 +71,7 @@ BOOST_AUTO_TEST_CASE(static_cast_test_4)
 	const int magic = 42;
 
 	/* discard the value of the expression */
+	BOOST_CHECK((std::is_same<decltype(static_cast<void>(magic)), void>::value));
 	BOOST_CHECK(typeid(static_cast<void>(magic)) == typeid(void));
 	BOOST_CHECK(typeid(static_cast<void>(magic)) != typeid(int));
 	BOOST_CHECK(typeid(magic) == typeid(int));
@@ -81,8 +82,10 @@ BOOST_AUTO_TEST_CASE(static_cast_test_5)
 	const int foo = 42;
 	const int * const bar = &foo;
 	const void * const baz = bar;
-	const int * const qux = static_cast<const int * const>(baz);
 
 	/* undo: inverse of the implicit conversion */
+	//const int * const qux = baz;
+	const int * const qux = static_cast<const int * const>(baz);
+
 	BOOST_CHECK(*qux == foo);
 }
