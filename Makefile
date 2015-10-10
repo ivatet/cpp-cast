@@ -1,17 +1,19 @@
-CC=g++
+ifndef CXX
+CXX=g++
+endif
 
 OS=`uname`
 
 ifeq ($(OS), Darwin)
-CFLAGS=-I/usr/local/include
+CXXFLAGS=-I/usr/local/include
 else
-CFLAGS=-I/usr/include
+CXXFLAGS=-I/usr/include
 endif
 
-CFLAGS+=-Werror -Wall -Wextra -Wpedantic -g -std=c++11
+CXXFLAGS+=-Werror -Wall -Wextra -Wpedantic -g -std=c++11
 
 all:
-	${CC} ${CFLAGS} main.cpp -o cpp-cast
+	$(CXX) $(CXXFLAGS) main.cpp -o cpp-cast
 
 clean:
 	rm cpp-cast
