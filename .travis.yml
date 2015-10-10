@@ -3,6 +3,9 @@ sudo: false
 language: cpp
 compiler: g++-4.8
 
+install:
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+
 addons:
   apt:
     sources:
@@ -11,4 +14,5 @@ addons:
     - gcc-4.8
     - g++-4.8
 
-script: CXX=g++-4.8 make
+
+script: make
