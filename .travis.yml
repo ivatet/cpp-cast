@@ -15,9 +15,8 @@ addons:
     - g++-5
 
 before_install:
-  - wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download -O /tmp/boost.tar.bz2
-  - tar jxf /tmp/boost.tar.bz2
-  - mv boost_1_58_0 $PWD/boost_1_58_0
-  - export BOOST="$PWD/boost_1_58_0"
+  - wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download -O boost.tar.bz2
+  - tar jxf boost.tar.bz2
+  - export BOOST="boost_1_58_0"
 
 script: make
