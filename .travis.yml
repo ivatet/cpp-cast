@@ -13,7 +13,11 @@ addons:
     packages:
     - gcc-5
     - g++-5
-    - libboost-system-dev
-    - libboost-filesystem-dev
+
+before_install:
+  - wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download -O /tmp/boost.tar.bz2
+  - tar jxf /tmp/boost.tar.bz2
+  - mv boost_1_58_0 $PWD/boost_1_58_0
+  - export BOOST="$PWD/boost_1_58_0"
 
 script: make
