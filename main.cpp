@@ -1,13 +1,21 @@
 #define BOOST_TEST_MODULE CastTest
 #include <boost/test/included/unit_test.hpp>
 
-namespace static_cast_test_1 {
 class Foo {
 public:
 	template <typename T> explicit Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	const std::string &str() const { return m_str; }
-private:
+	Foo() : m_str() {}
+	virtual ~Foo() {}
+	const std::string &to_string() const { return m_str; }
+	static const int magic = 42;
+protected:
 	std::string m_str;
+};
+
+class Bar : public Foo {
+public:
+	template <typename T> Bar(T &&str) : Foo(std::forward<T>(str)) {}
+	static const int magic = 0;
 };
 
 BOOST_AUTO_TEST_CASE(static_cast_test_1)
@@ -17,54 +25,32 @@ BOOST_AUTO_TEST_CASE(static_cast_test_1)
 	/* call explicit ctor implicitly */
 	//Foo foo = magic;
 	Foo foo = static_cast<Foo>(magic);
-	BOOST_CHECK(foo.str() == magic);
+	BOOST_CHECK(foo.to_string() == magic);
 }
-}
-
-namespace static_cast_test_2 {
-class Foo {
-public:
-	virtual ~Foo() {}
-	static const int magic = 42;
-};
-
-class Bar : public Foo {
-public:
-	static const int magic = -1;
-};
 
 BOOST_AUTO_TEST_CASE(static_cast_test_2)
 {
 	Foo foo;
 
-	/* careless downcasting without run-time check */
+	/* downcasting without run-time check */
 	//Bar &baz = foo;
 	//Bar &baz = dynamic_cast<Bar &>(foo);
 	Bar &bar = static_cast<Bar &>(foo);
 	BOOST_CHECK(bar.magic == Bar::magic);
 }
-}
 
-namespace static_cast_test_3 {
-class Foo {
-public:
-	template <typename T> Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	const std::string &str() const { return m_str; }
-private:
-	std::string m_str;
-};
-
+#if 0
 BOOST_AUTO_TEST_CASE(static_cast_test_3)
 {
 	std::string magic = "42";
-	Foo foo(magic);
+	Bar foo(magic);
 
 	/* lvalue to xvalue */
-	Foo bar = static_cast<Foo &&>(foo);
-	BOOST_CHECK(foo.str() != magic);
-	BOOST_CHECK(bar.str() == magic);
+	Bar bar = static_cast<Bar &&>(foo);
+	BOOST_CHECK(foo.to_string() != magic);
+	BOOST_CHECK(bar.to_string() == magic);
 }
-}
+#endif
 
 BOOST_AUTO_TEST_CASE(static_cast_test_4)
 {
