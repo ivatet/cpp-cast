@@ -4,7 +4,6 @@
 class Foo {
 public:
 	template <typename T> explicit Foo(T &&str) : m_str(std::forward<T>(str)) {}
-	Foo() : m_str() {}
 	virtual ~Foo() {}
 	const std::string &to_string() const { return m_str; }
 	static const int magic = 42;
@@ -30,7 +29,7 @@ BOOST_AUTO_TEST_CASE(static_cast_test_1)
 
 BOOST_AUTO_TEST_CASE(static_cast_test_2)
 {
-	Foo foo;
+	Foo foo("42");
 
 	/* downcasting without run-time check */
 	//Bar &baz = foo;
