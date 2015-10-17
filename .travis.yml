@@ -1,7 +1,7 @@
 sudo: false
 
 language: cpp
-compiler: g++-5
+compiler: g++-4.9
 
 install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
@@ -15,8 +15,8 @@ addons:
     - g++-4.9
 
 before_install:
-  - wget http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2 -O boost.tar.bz2
+  - wget http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.bz2 -O boost.tar.bz2
   - tar jxf boost.tar.bz2
-  - export BOOST="boost_1_59_0"
+  - export BOOST="boost_1_58_0"
 
 script: make
