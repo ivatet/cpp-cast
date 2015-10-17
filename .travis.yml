@@ -4,15 +4,15 @@ language: cpp
 compiler: g++-5
 
 install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
 
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-5
-    - g++-5
+    - gcc-4.9
+    - g++-4.9
 
 before_install:
   - wget http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2 -O boost.tar.bz2
