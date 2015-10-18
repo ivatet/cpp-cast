@@ -13,7 +13,8 @@ protected:
 
 class Bar : public Foo {
 public:
-	template <typename T> Bar(T &&str) : Foo(std::forward<T>(str)) {}
+	template <typename T> explicit Bar(T &&str) : Foo(std::forward<T>(str)) {}
+	Bar(Bar &&bar) : Foo(std::move(bar.m_str)) {}
 	static const int magic = 0;
 };
 
@@ -38,18 +39,16 @@ BOOST_AUTO_TEST_CASE(static_cast_test_2)
 	BOOST_CHECK(bar.magic == Bar::magic);
 }
 
-#if 0
 BOOST_AUTO_TEST_CASE(static_cast_test_3)
 {
 	std::string magic = "42";
-	Bar foo(magic);
+	Bar bar(magic);
 
 	/* lvalue to xvalue */
-	Bar bar = static_cast<Bar &&>(foo);
-	BOOST_CHECK(foo.to_string() != magic);
-	BOOST_CHECK(bar.to_string() == magic);
+	Bar baz = static_cast<Bar &&>(bar);
+	BOOST_CHECK(bar.to_string() != magic);
+	BOOST_CHECK(baz.to_string() == magic);
 }
-#endif
 
 BOOST_AUTO_TEST_CASE(static_cast_test_4)
 {
