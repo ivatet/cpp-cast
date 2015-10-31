@@ -1,6 +1,6 @@
 # Typecasting #
 
-\#static_cast \#dynamic_cast \#reinterpret_cast \#const_cast
+`static_cast` | `dynamic_cast` | `reinterpret_cast` | `const_cast`
 
 [![Build Status](https://travis-ci.org/xpdu/cpp-cast.svg?branch=master)](https://travis-ci.org/xpdu/cpp-cast)
 
