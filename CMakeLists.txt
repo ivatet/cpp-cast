@@ -1,0 +1,9 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(cpp-cast)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wpedantic -g -std=c++11")
+
+FIND_PACKAGE(Boost REQUIRED)
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
+
+ADD_EXECUTABLE(cpp-cast main.cpp)

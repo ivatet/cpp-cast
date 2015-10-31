@@ -19,4 +19,6 @@ before_install:
   - tar jxf boost.tar.bz2
   - export BOOST="boost_1_58_0"
 
-script: make
+script:
+  - cmake -DBoost_INCLUDE_DIR=/tmp/boost_1_58_0 -D CMAKE_C_COMPILER=gcc-4.9 -D CMAKE_CXX_COMPILER=g++-4.9 CMakeLists.txt
+  - make
