@@ -1,7 +1,6 @@
-# static_cast #
-# dynamic_cast #
-# reinterpret_cast #
-# const_cast #
+# Typecasting #
+
+\#static_cast \#dynamic_cast \#reinterpret_cast \#const_cast
 
 [![Build Status](https://travis-ci.org/xpdu/cpp-cast.svg?branch=master)](https://travis-ci.org/xpdu/cpp-cast)
 
@@ -12,11 +11,11 @@ Check [main.cpp](main.cpp) for more type conversion examples!
 
 In order to build this project you need something to be installed. I've just used these particular versions:
 
-* [https://cmake.org/](CMake) 2.8
-
-* [https://gcc.gnu.org/](GCC) 5.2
-
-* [http://www.boost.org/](Boost) 1.58
+| Product | Version |
+|---|---|
+| [CMake](https://cmake.org/) | 2.8 |
+| [GCC](https://gcc.gnu.org/) | 4.9 |
+| [Boost](http://www.boost.org/) | 1.58 |
 
 It also should be ok to build it against other versions with (almost) no changes.
 
